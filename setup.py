@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="history",
-    version="0.5",
+    version="0.5.1",
     author="Daniel W. Paley",
     author_email="dwpaley@gmail.com",
     description="Bash-style history for Python interactive interpreter",
