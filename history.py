@@ -1,3 +1,7 @@
+'''
+BASH-esque history for the Python3 interactive interpreter.
+'''
+
 import readline
 
 def _hprint(hlist):
