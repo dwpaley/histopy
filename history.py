@@ -1,11 +1,14 @@
 import readline
 
 def get_history():
-    history = [
-            readline.get_history_item(i+i) 
-            for i in range(readline.get_current_history_length())
-            ]
-    print(readline.get_current_history_length())
+    hlen = readline.get_current_history_length()
+    h = []
+    for i in range(hlen): h.append(readline.get_history_item(i+1))
+    return h
+
+def broken_get_history():
+    hlen = readline.get_current_history_length()
+    history = [readline.get_history_item(i+i) for i in range(hlen)]
     return history
 
 def history():
