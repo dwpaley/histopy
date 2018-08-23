@@ -7,6 +7,7 @@ Quickstart:
 '''
 
 import readline
+import sys
 
 def _hprint(hlist):
     '''takes an enumerated list of lines and prints number, tab, line
@@ -57,11 +58,34 @@ def recall(n):
     '''
     exec(_get_history_full()[n][1])
 
-def recall_range(n1, n2):
+def recall_range_old(n1, n2):
     '''Execute commands between n1 and n2 (python slice style)
     This currently stops executing if it hits a command that throws an error
     '''
     exec('\n'.join(item[1] for item in _get_history_full()[n1:n2]))
+
+def recall_range(n1, n2):
+    commands = iter(_get_history_full()[n1:n2])
+    try:
+        exec_ret = exec_line(next(commands))
+    except Exception as err:
+        etype, value, tb = sys.exc_info()
+
+
+def exec_line(line):
+    try: 
+        exec(line[1])
+    except SyntaxError as err:
+        if err.args[0] == 'unexpected EOF while parsing':
+            return line
+        else:
+            raise
+    except:
+        raise
+    return
+        
+    
+
 
 def find(term):
     '''print lines matching term. For now it's a simple string find, case-
