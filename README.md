@@ -13,6 +13,7 @@ Quickstart:
 >>> hp.history_full()     # like $ history
 >>> hp.history()          # history of current session
 >>> hp.recall(n)          # like $ !n
+>>> hp.find('foo')        # print lines matching 'foo'
 ```
 
 Known issues:

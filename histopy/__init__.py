@@ -6,12 +6,13 @@ Quickstart:
 >>> hp.history_full()     # like $ history
 >>> hp.history()          # history of current session
 >>> hp.recall(n)          # like $ !n
+>>> hp.find('foo')        # print lines matching 'foo'
 '''
 
 from .hp import *
 
 __all__ = (
-        'history', 'history_full', 'recall', 'recall_range', 'find'
+        'history', 'history_full', 'recall', 'recall_range', 'find',
         '__title__', '__summary__', '__url__', '__version__', '__author__',
         '__email__', '__license__'
         )
