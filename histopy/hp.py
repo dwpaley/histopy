@@ -1,13 +1,3 @@
-'''
-BASH-inspired history for the Python3 interactive interpreter.
-
-Quickstart: 
->>> import histopy as hp
->>> hp.history_full()     # like $ history
->>> hp.history()          # history of current session
->>> hp.recall(n)          # like $ !n
-'''
-
 import readline
 import inspect
 
