@@ -1,9 +1,11 @@
 '''
-BASH-esque history for the Python3 interactive interpreter.
+BASH-inspired history for the Python3 interactive interpreter.
 
 Quickstart: 
-    -Try history.history(), equivalent to bash $ history
-    -Try history.recall(n), equivalent to bash $ !n
+>>> import histopy as hp
+>>> hp.history_full()     # like $ history
+>>> hp.history()          # history of current session
+>>> hp.recall(n)          # like $ !n
 '''
 
 import readline
