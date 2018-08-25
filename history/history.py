@@ -8,6 +8,7 @@ Quickstart:
 
 import readline
 import sys
+import inspect
 
 def _hprint(hlist):
     '''takes an enumerated list of lines and prints number, tab, line
@@ -64,12 +65,12 @@ def recall_range_old(n1, n2):
     '''
     exec('\n'.join(item[1] for item in _get_history_full()[n1:n2]))
 
-def recall_range(n1, n2, nspace):
+def recall_range(n1, n2):
     stack = 'x=11'
     for n, line in _get_history_full()[n1:n2]:
         stack = '\n'.join([stack, line])
         try:
-            exec(line, nspace)
+            exec_line(stack)
             stack = ''
         except SyntaxError as err1:
             if err1.args[0] == 'unexpected EOF while parsing':
@@ -83,8 +84,9 @@ def recall_range(n1, n2, nspace):
 
 
 def exec_line(line):
+    top_globals = inspect.stack()[-1].frame.f_globals
     try: 
-        exec(line, globals())
+        exec(line, top_globals)
     except SyntaxError as err:
         if err.args[0] == 'unexpected EOF while parsing':
             return line
