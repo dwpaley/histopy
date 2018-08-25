@@ -65,38 +65,27 @@ def recall_range_old(n1, n2):
     '''
     exec('\n'.join(item[1] for item in _get_history_full()[n1:n2]))
 
+
 def recall_range(n1, n2):
-    stack = 'x=11'
-    for n, line in _get_history_full()[n1:n2]:
-        stack = '\n'.join([stack, line])
-        try:
-            exec_line(stack)
-            stack = ''
-        except SyntaxError as err1:
-            if err1.args[0] == 'unexpected EOF while parsing':
-                continue
-            else:
-                ###handle the exception
-                pass
-        except Exception as err:
-            ###handle the exception
-            pass
+    full_queue = _get_history_full()[n1:n2]
+    current_queue = []
+    while full_queue:
+        current_queue.append(full_queue.pop(0))
+        while full_queue and full_queue[0][1][0].isspace():
+            current_queue.append(full_queue.pop(0))
+        current_queue = _exec_lines(current_queue)
 
-
-def exec_line(line):
+def _exec_lines(lines):
     top_globals = inspect.stack()[-1].frame.f_globals
-    try: 
-        exec(line, top_globals)
-    except SyntaxError as err:
+    exec_string = '\n'.join([line[1] for line in lines])
+    try:
+        exec(exec_string, top_globals)
+    except Exception as err:
         if err.args[0] == 'unexpected EOF while parsing':
-            return line
+            return lines
         else:
             raise
-    except:
-        raise
-    return ''
-        
-    
+    return [(0,'')]
 
 
 def find(term):
