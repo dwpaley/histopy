@@ -7,7 +7,6 @@ Quickstart:
 '''
 
 import readline
-import sys
 import inspect
 
 def _hprint(hlist):

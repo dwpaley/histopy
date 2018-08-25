@@ -1,9 +1,0 @@
--put the commands for the full range in a list
--start from line 0. 
-    -try exec(line). 
-        -except syntaxerror unexpected EOF, get the next line and
-            exec(line+next_line). (Maybe do this recursively?)
-        -except something else:
-            -catch error and stack trace
-            -print those like normal
-            -prompt "continue executing at line ... or break?"
