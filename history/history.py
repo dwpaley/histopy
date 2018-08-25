@@ -56,7 +56,7 @@ def history_full():
 def recall(n):
     '''execute command n from the full history
     '''
-    exec(_get_history_full()[n][1])
+    _exec_lines([_get_history_full()[n]])
 
 def recall_range_old(n1, n2):
     '''Execute commands between n1 and n2 (python slice style)
