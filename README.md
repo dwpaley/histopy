@@ -8,10 +8,12 @@ Github: https://github.com/dwpaley/histopy
 
 
 Quickstart: 
-* >>> import histopy as hp
-* >>> hp.history_full()     # like $ history
-* >>> hp.history()          # history of current session
-* >>> hp.recall(n)          # like $ !n
+```
+>>> import histopy as hp
+>>> hp.history_full()     # like $ history
+>>> hp.history()          # history of current session
+>>> hp.recall(n)          # like $ !n
+```
 
 Known issues:
 * recall_range(n1, n2) doesn't attempt to handle any exceptions. Would be nice
