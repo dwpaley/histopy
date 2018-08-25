@@ -64,16 +64,22 @@ def recall_range_old(n1, n2):
     '''
     exec('\n'.join(item[1] for item in _get_history_full()[n1:n2]))
 
-def recall_range(n1, n2):
+def recall_range(n1, n2, nspace):
     stack = 'x=11'
     for n, line in _get_history_full()[n1:n2]:
         stack = '\n'.join([stack, line])
         try:
-            stack = exec_line(stack)
+            exec(line, nspace)
+            stack = ''
+        except SyntaxError as err1:
+            if err1.args[0] == 'unexpected EOF while parsing':
+                continue
+            else:
+                ###handle the exception
+                pass
         except Exception as err:
             ###handle the exception
             pass
-    print(a)
 
 
 def exec_line(line):
